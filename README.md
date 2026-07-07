@@ -1,11 +1,12 @@
-# Real vs Fake Face Detection System
+# Face Anti-Spoof Detection
+### A Modern Security Advance System for Detection of Real and Fake Human Faces
 
 [![Springer Paper](https://img.shields.io/badge/Springer-Published-orange.svg)](https://link.springer.com/chapter/10.1007/978-3-031-92854-3_16)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Streamlit App](https://img.shields.io/badge/Streamlit-Demo-red.svg)](https://real-vs-fake-face.streamlit.app/)
 [![Keras / TensorFlow](https://img.shields.io/badge/TensorFlow-2.12+-blue.svg)](https://tensorflow.org/)
 
-An advanced deep learning framework designed to detect AI-generated fake faces (deepfakes) and verify digital media authenticity. This repository contains the official implementation of the peer-reviewed research paper published in **Springer**.
+To address the security risks posed by hyper-realistic AI-generated faces, this repository implements a deployment-ready deep learning system for real-time face anti-spoof detection. Utilizing a customized lightweight EfficientNetV2-B0 architecture, this work contains the official implementation of our peer-reviewed research published in **Springer Nature (ICETCI 2025)**, packaged with a modular backend and deployed as an interactive Streamlit application suitable for demonstration and evaluation.
 
 🔗 **Read the Research Paper:** [Springer Link](https://link.springer.com/chapter/10.1007/978-3-031-92854-3_16)  
 🚀 **Live Application Demo:** [real-vs-fake-face.streamlit.app](https://real-vs-fake-face.streamlit.app/)  
@@ -13,15 +14,40 @@ An advanced deep learning framework designed to detect AI-generated fake faces (
 
 ---
 
-## 📖 Research Abstract & Methodology
+## 📖 Research Abstract & Problem Statement
 
 As generative models (such as StyleGAN) produce hyper-realistic human faces indistinguishable from real photos, they pose serious security and verification challenges. This project implements a modern detection pipeline:
 
 1. **Model Architecture:** We employ an optimized **EfficientNetV2-B0** classifier, customized and fine-tuned for high-accuracy binary classification (Real vs. Fake).
 2. **Dataset:** Trained on the **140k Real and Fake Faces** dataset, mapping complex local features and high-frequency generator artifacts.
-3. **Key Findings:** Achieved a peak validation accuracy of **94%**, demonstrating robust performance in digital forensics scenarios.
+3. **Key Findings:** Achieved a peak test accuracy of **93.91%**, demonstrating robust performance in digital forensics scenarios.
 
 ![Dataset Specifications](assets/dataset_specifications.png)
+
+---
+
+## ✨ Key Features
+* **Production-Ready Dashboard:** Interactive Streamlit interface styled with custom CSS layout overrides.
+* **Highly Optimized Extractor:** Leverages a modified EfficientNetV2-B0 backbone with Fused-MBConv layers, achieving high accuracy with only 5.9M parameters.
+* **Dual-Framework Baseline Pipeline:** Supports TensorFlow/Keras for live dashboard serving and PyTorch for offline baseline model evaluations.
+* **Springer-Published Research:** Displays peer-reviewed credentials and integrated academic similarity indices directly in the UI.
+
+---
+
+## 🛠️ Engineering Highlights
+* **Dynamic Model Deserialization:** The model loader reconstructs the network dynamically in Python code before injecting weights, resolving deserialization compatibility conflicts between Keras 2.x and Keras 3.x.
+* **Magic-Byte Header Sanitization:** Uploaded file streams are validated at the raw binary header level for JPEG/PNG signatures before instantiating image buffers to protect server instances against arbitrary file injection.
+* **Optimized Aspect Constraints:** Constrains vertical preview bounds via thumbnail scaling, aligning the visual pipeline side-by-side across all viewport ratios.
+
+---
+
+## 📊 Model Performance
+The classifier was trained over 10 epochs using an Adam optimizer and Binary Cross-Entropy loss. Below is the final evaluation summary matching the published metrics:
+
+| Phase | Accuracy | Loss | Training Duration |
+| :--- | :--- | :--- | :--- |
+| **Training Set** | 97.33% | 0.0729 | 6,264.28 seconds |
+| **Test Set** | **93.91%** | 0.1883 | (Inference: ~0.8s) |
 
 ---
 
@@ -82,7 +108,7 @@ Place your trained Keras/TensorFlow weight file `dffnetv2B0.h5` in the root dire
 ### 4. Multi-Framework Comparative Research
 This project evaluates both TensorFlow and PyTorch baselines for experimental validation:
 * **Production Model (TensorFlow/Keras):** Deployed live in the Streamlit application for high-performance CPU inference.
-* **Baseline Research Baselines (PyTorch):** Scripts located in [research/](file:///Users/pranavobili/Downloads/%20project%204.2/research) (e.g. `model_pytorch.py`) are kept for training baseline comparisons against ResNet architectures.
+* **Baseline Research Baselines (PyTorch):** Scripts located in [research/](research/) (e.g. `model_pytorch.py`) are kept for training baseline comparisons against ResNet architectures.
 
 ### 5. Running the Local Demo
 Launch the interactive Streamlit dashboard:
