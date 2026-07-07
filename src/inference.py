@@ -17,9 +17,10 @@ def get_prediction(model, image_file):
     try:
         # Validate payload signature if it's a file buffer to prevent arbitrary code execution
         if hasattr(image_file, "read"):
+            image_file.seek(0)  # reset position before reading
             header = image_file.read(8)
-            image_file.seek(0)  # reset position
-            is_jpeg = header.startswith(b'\xff\xd8\xff')
+            image_file.seek(0)  # reset position after reading
+            is_jpeg = header.startswith(b'\xff\xd8\xff') or header.startswith(b'\xff\xd8')
             is_png = header.startswith(b'\x89PNG\r\n\x1a\n')
             if not (is_jpeg or is_png):
                 raise ValueError("Uploaded payload does not match a valid JPEG or PNG file header signature.")
