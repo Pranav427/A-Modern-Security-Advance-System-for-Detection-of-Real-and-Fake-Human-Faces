@@ -2,12 +2,14 @@
 
 [![Springer Paper](https://img.shields.io/badge/Springer-Published-orange.svg)](https://link.springer.com/chapter/10.1007/978-3-031-92854-3_16)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![Streamlit App](https://img.shields.io/badge/Streamlit-Demo-red.svg)](https://streamlit.io/)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Demo-red.svg)](https://real-vs-fake-face.streamlit.app/)
 [![Keras / TensorFlow](https://img.shields.io/badge/TensorFlow-2.12+-blue.svg)](https://tensorflow.org/)
 
 An advanced deep learning framework designed to detect AI-generated fake faces (deepfakes) and verify digital media authenticity. This repository contains the official implementation of the peer-reviewed research paper published in **Springer**.
 
-🔗 **Read the Research Paper:** [Springer Link](https://link.springer.com/chapter/10.1007/978-3-031-92854-3_16)
+🔗 **Read the Research Paper:** [Springer Link](https://link.springer.com/chapter/10.1007/978-3-031-92854-3_16)  
+🚀 **Live Application Demo:** [real-vs-fake-face.streamlit.app](https://real-vs-fake-face.streamlit.app/)  
+💼 **Developer Portfolio:** [portfolio-self-one-10.vercel.app](https://portfolio-self-one-10.vercel.app/)
 
 ---
 
