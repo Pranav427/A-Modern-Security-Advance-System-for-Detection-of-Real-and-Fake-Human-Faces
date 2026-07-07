@@ -225,9 +225,19 @@ def render_prediction_result(
     st.markdown(f'<div class="result-value {text_style}">{verdict}</div>', unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-    result_cols = st.columns(2)
-    result_cols[0].metric("Confidence", f"{confidence * 100:.2f}%")
-    result_cols[1].metric("Target Resolution", "256x256")
+    # Custom HTML metrics cards
+    st.markdown(f"""
+        <div style="display: flex; gap: 1rem; margin-top: 1rem; margin-bottom: 1rem;">
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 8px; padding: 0.8rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                <div style="font-size: 0.8rem; color: #8A9Aad; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem;">Confidence</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #7aa2ff;">{confidence * 100:.2f}%</div>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 8px; padding: 0.8rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                <div style="font-size: 0.8rem; color: #8A9Aad; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem;">Target Resolution</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #7aa2ff;">256x256</div>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.progress(confidence, text="Model prediction confidence")
 
@@ -301,8 +311,18 @@ def render_prediction_page(model) -> None:
             col_img, col_act = st.columns([1, 1])
 
             with col_img:
+                if hasattr(st.session_state.test_image, "seek"):
+                    st.session_state.test_image.seek(0)
                 img = Image.open(st.session_state.test_image)
-                st.image(img, use_column_width=True, caption=st.session_state.test_image_name)
+                
+                # Constrain dimensions to keep dashboard vertically aligned
+                img.thumbnail((360, 360))
+                
+                # Wrap inside a premium border frame
+                st.markdown('<div style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px; padding: 12px; background: rgba(128, 128, 128, 0.03); display: flex; justify-content: center; align-items: center;">', unsafe_allow_html=True)
+                st.image(img, use_column_width=False, width=320)
+                st.markdown('</div>', unsafe_allow_html=True)
+                st.caption(f"Frame preview: {st.session_state.test_image_name}")
 
             with col_act:
                 st.write("### Model Execution")
