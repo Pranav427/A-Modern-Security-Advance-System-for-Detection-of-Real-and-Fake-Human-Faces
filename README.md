@@ -21,6 +21,8 @@ As generative models (such as StyleGAN) produce hyper-realistic human faces indi
 2. **Dataset:** Trained on the **140k Real and Fake Faces** dataset, mapping complex local features and high-frequency generator artifacts.
 3. **Key Findings:** Achieved a peak validation accuracy of **94%**, demonstrating robust performance in digital forensics scenarios.
 
+![Dataset Specifications](assets/dataset_specifications.png)
+
 ---
 
 ## 🖥️ Dashboard Preview
@@ -103,6 +105,8 @@ In compliance with research integrity standards (crucial for MSc admissions scre
 * **Similarity Index:** 21% (Well within standard acceptable academic thresholds)
 * **Primary Sources:** 12% Internet, 10% Publications, 11% Student papers.
 This confirms the authenticity of the codebase and thesis implementation.
+
+![Academic Credentials](assets/academic_credentials.png)
 
 ---
 
