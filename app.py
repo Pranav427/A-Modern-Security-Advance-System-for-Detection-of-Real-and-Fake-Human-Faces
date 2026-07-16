@@ -186,9 +186,9 @@ def render_sidebar() -> str:
         st.title("Face Forensics")
         
         if "page" not in st.session_state:
-            st.session_state.page = "AI Prediction System"
+            st.session_state.page = "Predictive Analytics System"
             
-        options = ["AI Prediction System", "Technical Case Study"]
+        options = ["Predictive Analytics System", "Technical Case Study"]
         default_index = options.index(st.session_state.page) if st.session_state.page in options else 0
         
         selected_page = st.radio(
@@ -270,7 +270,7 @@ def render_prediction_page(model) -> None:
     st.markdown(
         """
         <div class="app-hero">
-            <div class="eyebrow">AI Prediction System</div>
+            <div class="eyebrow">Predictive Analytics System</div>
             <h1>Real vs Fake Face Detector</h1>
             <p class="muted">
             An applied computer vision dashboard that distinguishes real human faces from 
@@ -556,7 +556,7 @@ except Exception as e:
     st.stop()
 
 # Render appropriate page view
-if page == "AI Prediction System":
+if page == "Predictive Analytics System":
     render_prediction_page(model)
 else:
     render_case_study_page()
